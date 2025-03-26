@@ -7,7 +7,7 @@ const languageSelect = document.getElementById(
 const sortSelect = document.getElementById("sort-select") as HTMLSelectElement;
 const newsContainer = document.getElementById("news-container") as HTMLElement;
 
-const apiKey = import.meta.env.VITE_NEWSAPIKEY;
+const apiKey = import.meta.env.VITE_NEWS;
 
 // EventListener
 
