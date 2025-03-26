@@ -7,9 +7,9 @@ const languageSelect = document.getElementById(
 const sortSelect = document.getElementById("sort-select") as HTMLSelectElement;
 const newsContainer = document.getElementById("news-container") as HTMLElement;
 
-const apiKey = process.env.VITE_NEWS;
+const apiKey = import.meta.env.VITE_NEWS;
 
-// Event Listener
+// EventListener
 
 searchInput.addEventListener("input", fetchNews);
 languageSelect.addEventListener("change", fetchNews);
@@ -28,7 +28,7 @@ function fetchNews() {
   const search = searchInput.value || "frontend";
   const language = languageSelect.value;
   const sort = sortSelect.value;
-  const apiUrl = `https://newsapi.org/v2/everything?q=${search}&language=${language}&sortBy=${sort}&apiKey=${apiKey}`;
+  const apiUrl = `http://newsapi.org/v2/top-headlines?language=${language}&sortBy=${sort}everything?q=${search}&apiKey=${apiKey}`;
 
   fetch(apiUrl)
     .then((response) => response.json())
