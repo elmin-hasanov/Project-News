@@ -24,11 +24,19 @@ type Article = {
   url: string;
   publishedAt: string;
 };
-function fetchNews() {
+async function fetchNews() {
   const search = searchInput.value || "frontend";
   const language = languageSelect.value;
   const sort = sortSelect.value;
-  const apiUrl = `http://newsapi.org/v2/top-headlines?language=${language}&sortBy=${sort}everything?q=${search}&apiKey=${apiKey}`;
+  const apiUrl = `https://newsapi.org/v2/everything?q=${search}&language=${language}&sortBy=${sort}&apiKey=${apiKey}`;
+
+  const response = await fetch(apiUrl, {
+    headers: {
+      Connection: "keep-alive",
+    },
+  });
+  const data = await response.json();
+  console.log(data);
 
   fetch(apiUrl)
     .then((response) => response.json())
