@@ -9,7 +9,7 @@ const newsContainer = document.getElementById("news-container") as HTMLElement;
 
 const apiKey = import.meta.env.VITE_NEWS;
 
-// EventListener
+// Event Listener
 
 searchInput.addEventListener("input", fetchNews);
 languageSelect.addEventListener("change", fetchNews);
