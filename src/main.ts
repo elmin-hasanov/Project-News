@@ -30,15 +30,12 @@ async function fetchNews() {
   const sort = sortSelect.value;
   const apiUrl = `https://newsapi.org/v2/everything?q=${search}&language=${language}&sortBy=${sort}&apiKey=${apiKey}`;
 
-  const response = await fetch(apiUrl, {
+  fetch(apiUrl, {
     headers: {
-      Connection: "keep-alive",
+      Connection: "Upgrade",
+      Upgrade: "h2c", // Versucht auf HTTP/2 zu wechseln
     },
-  });
-  const data = await response.json();
-  console.log(data);
-
-  fetch(apiUrl)
+  })
     .then((response) => response.json())
     .then((data: Article) => {
       newsContainer.innerHTML = "";
