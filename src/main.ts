@@ -17,12 +17,20 @@ sortSelect.addEventListener("change", fetchNews);
 
 // Funktion
 type Article = {
-  articles: any;
-  urlToImage: string;
+  source: { name: string };
+  author: string | null;
   title: string;
-  description: string;
+  description: string | null;
   url: string;
+  urlToImage: string | null;
   publishedAt: string;
+  content: string | null;
+};
+
+type NewsResponse = {
+  status: string;
+  totalResults: number;
+  articles: Article[];
 };
 async function fetchNews() {
   const search = searchInput.value || "frontend";
@@ -30,14 +38,9 @@ async function fetchNews() {
   const sort = sortSelect.value;
   const apiUrl = `https://newsapi.org/v2/everything?q=${search}&language=${language}&sortBy=${sort}&apiKey=${apiKey}`;
 
-  fetch(apiUrl, {
-    headers: {
-      Connection: "Upgrade",
-      Upgrade: "h2c", // Versucht auf HTTP/2 zu wechseln
-    },
-  })
+  fetch(apiUrl)
     .then((response) => response.json())
-    .then((data: Article) => {
+    .then((data: NewsResponse) => {
       newsContainer.innerHTML = "";
 
       data.articles.forEach((article: Article) => {
